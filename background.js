@@ -23,6 +23,7 @@ gettingActiveTab.then((tabs) => {
 Restart alarm for the currently active tab, whenever the user navigates.
 */
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  // TODO: what does this do
   if (!changeInfo.url) {
     return;
   }
