@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "mindfulfly",
+  "version": "0.1a",
+  "description": "Collect and track time statistics for certain time-sink websites (e.g. YouTube, Facebook, Instagram, Reddit, Twitter)",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/chill-out",
+  "icons": {
+    "48": "icons/chillout-48.png"
+  },
+
+  "permissions": [
+    "alarms",
+    "tabs"
+  ],
+
+  "page_action": {
+    "default_icon": "icons/chillout-32.png",
+    "default_title": "Chill out"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+
+}
