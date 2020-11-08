@@ -64,7 +64,10 @@ document.addEventListener("click", (e) => {
 
     browser.tabs.query({active: true}).then((tabs) => {
       browser.storage.local.get().then( (resultStorageObject) => {
-        let localStorageObject = {}
+        // TODO: why doesn't this work properly?
+        // Nice use of the "null coalescning operator"
+        // let localStorageObject = resultStorageObject ?? {[CLICKED_PROP_NAME]: 0} 
+
         if (!resultStorageObject[CLICKED_PROP_NAME]) {
           localStorageObject = {}
           localStorageObject[CLICKED_PROP_NAME] = 0;
@@ -73,7 +76,6 @@ document.addEventListener("click", (e) => {
         }
         localStorageObject[CLICKED_PROP_NAME] += 1
         browser.storage.local.set(localStorageObject);
-        console.log("I did it!")
       });
     });
 
@@ -88,7 +90,13 @@ document.addEventListener("click", (e) => {
 
     // Try to work with promises from JS
     browser.storage.local.get().then(( result ) => {
-      let resultString = JSON.stringify(result);
+      let resultString = null
+      if (!result || result.length === 0) {
+        // TODO: this doesn't work
+        resultString = "no info" 
+      } else {
+        resultString = JSON.stringify(result);
+      }
       document.getElementById("clickedSpan").textContent=resultString;
     });
 
@@ -107,6 +115,10 @@ document.addEventListener("click", (e) => {
       // }
       // console.log(`moving ${tab.id} to ${index}`)
       // browser.tabs.move([tab.id], {index});
+  }
+
+  else if (e.target.id === "clear-info") {
+    browser.storage.local.clear();
   }
 
   // if (e.target.id === "tabs-move-end") {
