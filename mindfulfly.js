@@ -68,8 +68,11 @@ document.addEventListener("click", (e) => {
         // Nice use of the "null coalescning operator"
         // let localStorageObject = resultStorageObject ?? {[CLICKED_PROP_NAME]: 0} 
 
-        if (!resultStorageObject[CLICKED_PROP_NAME]) {
+        if (resultStorageObject.length) {
           localStorageObject = {}
+        } 
+        
+        if (!resultStorageObject[CLICKED_PROP_NAME]) {
           localStorageObject[CLICKED_PROP_NAME] = 0;
         } else {
           localStorageObject = resultStorageObject;
